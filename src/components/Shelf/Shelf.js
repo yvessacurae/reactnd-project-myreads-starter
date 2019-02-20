@@ -8,7 +8,11 @@ class Shelf extends Component {
 
   componentDidMount() {
     const { books, status } = this.props;
-    let booksList = books && books.filter(book => book.shelf===status);
+    let booksList;
+    if(status!=='none')
+      booksList = books.filter(book => book.shelf===status);
+    else
+      booksList = books;
     this.setState({ books: booksList })
   }
   
@@ -17,7 +21,7 @@ class Shelf extends Component {
     const { title, status, onChange } = this.props
     return(
       <div className="bookshelf">
-        <ShelfTitle>{title}</ShelfTitle>
+        {title && <ShelfTitle>{title}</ShelfTitle>}
         <div className="bookshelf-books">
           <ol className="books-grid">
             { books && 

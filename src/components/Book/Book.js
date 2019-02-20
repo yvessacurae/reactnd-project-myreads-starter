@@ -13,6 +13,8 @@ class Book extends Component {
 
   changeShelf = e => this.props.onChange(this.state.details, e.target.value);
 
+  checkAuthors = authors => authors.length>1 ? authors.join(', ') : authors[0]
+
   render() {
     const { 
       id,
@@ -31,7 +33,7 @@ class Book extends Component {
             />
           </div>
           <div className="book-title">{title}</div>
-          <div className="book-authors">{authors.length>1 ? authors.join(', ') : authors[0]}</div>
+          {authors && <div className="book-authors">{this.checkAuthors(authors)}</div>}
         </div>
       </li>
     )
