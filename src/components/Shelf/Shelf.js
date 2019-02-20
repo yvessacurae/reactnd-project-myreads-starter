@@ -15,6 +15,16 @@ class Shelf extends Component {
       booksList = books;
     this.setState({ books: booksList })
   }
+
+  changeShelf = (book, shelf) => {
+    const { books } = this.state;
+    let newList;
+    if(shelf==='none') {
+      newList = books.filter(element => element.id!==book.id)
+    }
+    
+    this.setState({ books: newList })
+  };
   
   render() {
     const { books } = this.state;
@@ -28,7 +38,11 @@ class Shelf extends Component {
               <BookList 
                 books={books} 
                 status={status} 
-                onChange={onChange}
+                onChange={(book, shelf) => { 
+                  onChange(book, shelf)
+                  this.changeShelf(book, shelf)
+                }
+              }
               /> 
             }
           </ol>
