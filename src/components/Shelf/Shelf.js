@@ -14,13 +14,19 @@ class Shelf extends Component {
   
   render() {
     const { books } = this.state;
-    const { title, status } = this.props
+    const { title, status, onChange } = this.props
     return(
       <div className="bookshelf">
         <ShelfTitle>{title}</ShelfTitle>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            { books && <BookList books={books} status={status} /> }
+            { books && 
+              <BookList 
+                books={books} 
+                status={status} 
+                onChange={onChange}
+              /> 
+            }
           </ol>
         </div>
       </div>
